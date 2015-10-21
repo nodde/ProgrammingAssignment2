@@ -8,7 +8,7 @@
 ## "matrix" object that can cache its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
-  
+      # declaring matrix object
       invM <- NULL
       
       # set:   set the value of the matrix      
