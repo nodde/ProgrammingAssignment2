@@ -11,19 +11,20 @@ makeCacheMatrix <- function(x = matrix()) {
       # declaring matrix object
       invM <- NULL
       
-      # set:   set the value of the matrix      
+      # set:   set the value of the matrix object      
       set <- function(y) {
         x <<- y
         invM <<- NULL
       }
       
-      # get:   get the value of the matrix
+      # get:   get the value of the matrix object
       get <- function() x
       
       # setmatrix: set the value of inverse matrix
       # getmatrix: get the value of inverse matrix
       setmatrix <- function(solve) invM <<- solve
       getmatrix <- function() invM
+      
       # makeCacheMatrix returns a list of function arguments
       list(set = set, get = get,
            setmatrix = setmatrix,
@@ -48,7 +49,7 @@ cacheSolve <- function(x, ...) {
         return(invM)
       }
       
-      #Else it creates the matrix and its inverse
+      #Else it retrives the matrix and create its inverse
       data <- x$get()
       invM <- solve(data, ...)
       x$setmatrix(invM)
