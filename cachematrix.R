@@ -1,8 +1,9 @@
 ## Matrix inversion can be a time-consuming computation. 
 ## Caching the inverse of a matrix after computing once
 ## rather than computing it in each run can conserve 
-## resources and enhance efficiency. These 2 function
-## portray solution to this problem.
+## resources and enhance efficiency. These 2 functions
+## present the solution to this problem on the assumption
+## of a square invertible matrix.
 
 ## Function makeCacheMatrix creates a special 
 ## "matrix" object that can cache its inverse
@@ -25,7 +26,8 @@ makeCacheMatrix <- function(x = matrix()) {
       setmatrix <- function(solve) invM <<- solve
       getmatrix <- function() invM
       
-      # makeCacheMatrix returns a list of function arguments
+      # makeCacheMatrix returns the 4 functions
+      # above in a list
       list(set = set, get = get,
            setmatrix = setmatrix,
            getmatrix = getmatrix)
@@ -34,9 +36,9 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Function cacheSolve computes the inverse of the  
 ## special "matrix" returned by makeCacheMatrix above
-## The function assumes that the matrix is invertible
 ## First, it checks if inverse has already been computed.
 ## If so, it retrieves the value from the cached data.
+## If not, an inverse matrix is generated and stored.
 
 cacheSolve <- function(x, ...) {
       # Retrieves a matrix that is the inverse of 'x'
@@ -49,7 +51,7 @@ cacheSolve <- function(x, ...) {
         return(invM)
       }
       
-      #Else it retrives the matrix and create its inverse
+      #Else it retrieves the matrix and create its inverse
       data <- x$get()
       invM <- solve(data, ...)
       x$setmatrix(invM)
