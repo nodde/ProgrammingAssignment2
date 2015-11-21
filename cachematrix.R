@@ -5,11 +5,13 @@
 ## present the solution to this problem on the assumption
 ## of a square invertible matrix.
 
-## Function makeCacheMatrix creates a special 
-## "matrix" object that can cache its inverse
+
+## Function makeCacheMatrix creates a special "matrix" 
+## object that can cache its inverse. It returns a list 
+## of 4 functions which set and retrieves the matrix.
 
 makeCacheMatrix <- function(x = matrix()) {
-      # declaring matrix object
+      # Declaring matrix object
       invM <- NULL
       
       # set:   set the value of the matrix object      
@@ -35,7 +37,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Function cacheSolve computes the inverse of the  
-## special "matrix" returned by makeCacheMatrix above
+## special "matrix" returned by makeCacheMatrix above.
 ## First, it checks if inverse has already been computed.
 ## If so, it retrieves the value from the cached data.
 ## If not, an inverse matrix is generated and stored.
@@ -44,14 +46,14 @@ cacheSolve <- function(x, ...) {
       # Retrieves a matrix that is the inverse of 'x'
       invM <- x$getmatrix()
       
-      #Checks if inverse matrix exists already
+      # Checks if inverse matrix exists already
       # If so, inverse matrix is returned
       if(!is.null(invM)) {
         message("getting cached data")
         return(invM)
       }
       
-      #Else it retrieves the matrix and create its inverse
+      # Else it retrieves the matrix and create its inverse
       data <- x$get()
       invM <- solve(data, ...)
       x$setmatrix(invM)
